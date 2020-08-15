@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FallingWords</string>
+    <string name="dialog_message">Do you really want to exit the game?</string>
+    <string name="game_description"> Hey, As a player you have to decide if the falling word is the correct spanish translation or not.</string>
+    <string name="start">Let\'s Start A Game</string>
+    <string name="totalTxt">Total Number of Words : %1$d / %2$d</string>
+</resources>
