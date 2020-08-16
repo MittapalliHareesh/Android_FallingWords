@@ -47,5 +47,5 @@ Falling word game case study was implemented in such a way that, words will fall
 
 Technically, MVVM architecture was used and separated View, Bussiness logic, and API/Database operations. To keep observe data, I have used the LiveData object with RXJava. To inject components I have used Dependency Injection Library.
 
-As of now, this app supports portrait mode only. Due to time constraints, I could not able to handle landscape mode & could not able to write test cases.
+As of now, this app supports portrait mode only. Due to time constraints, Could not able to write test cases and make app in landscape mode.
 
