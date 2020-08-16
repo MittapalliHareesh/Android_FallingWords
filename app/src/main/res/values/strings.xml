@@ -5,7 +5,7 @@
     <string name="start">Let\'s Start A Game</string>
     <string name="totalTxt">Total Number of Words : %1$d / %2$d</string>
     <string name="endTitle">Kudos!! Thanks for playing.</string>
-    <string name="endDesc">Do you want to play again?\nWhy to wait let\'s play it.</string>
+    <string name="endDesc">Have you enjoyed it.\nWhy to wait let\'s play again.</string>
     <string name="playAgainTxt">Play Again</string>
     <string name="exit">Exit</string>
     <string name="yes">Yes</string>

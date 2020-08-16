@@ -14,6 +14,7 @@
         android:gravity="center"
         android:text="@string/game_description"
         android:textStyle="bold|italic"
+        android:lineSpacingExtra="@dimen/_8sdp"
         app:layout_constraintBottom_toTopOf="@+id/startBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

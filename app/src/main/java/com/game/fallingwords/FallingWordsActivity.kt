@@ -16,6 +16,7 @@ import com.game.fallingwords.viewmodel.FallingWordViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_falling_words_layout.*
 import javax.inject.Inject
+import kotlin.random.Random
 
 class FallingWordsActivity : BaseActivity() {
 
@@ -25,6 +26,7 @@ class FallingWordsActivity : BaseActivity() {
     private lateinit var wordItemList: List<WordItems>
     private var index = 0
     private var isAttempted = false
+    private lateinit var tempWordItem: WordItems
 
 
     @Inject
@@ -51,8 +53,9 @@ class FallingWordsActivity : BaseActivity() {
         fallingWordViewModel.getWordList().observeForever { response ->
             objectAnimator.start()
             wordItemList = response
-            mBinding.wordItem = wordItemList.first()
-            initializeHeadingTxt(wordItemList.size - 1, index)
+            tempWordItem = wordItemList.first()
+            mBinding.wordItem = tempWordItem
+            initializeHeadingTxt(wordItemList.size, index)
         }
 
         objectAnimator.addListener(object : Animator.AnimatorListener {
@@ -65,60 +68,51 @@ class FallingWordsActivity : BaseActivity() {
                     baseResponse.notAttempt++
                     index++
                     if (index == wordItemList.size) {
-                        displayPlayAgainDialog()
+                        showPlayAgainDialog()
                     } else {
+                        tempWordItem = wordItemList[index]
+                        mBinding.wordItem = tempWordItem
                         mBinding.baseResponse = baseResponse
-                        mBinding.wordItem = wordItemList[index]
-                        initializeHeadingTxt(wordItemList.size - 1, index)
+                        initializeHeadingTxt(wordItemList.size, index)
                         objectAnimator.start()
                     }
-
                 }
             }
 
-            override fun onAnimationCancel(p0: Animator?) {
-            }
+            override fun onAnimationCancel(p0: Animator?) {}
 
             override fun onAnimationStart(p0: Animator?) {
                 isAttempted = false
-                fallingText.visibility = View.VISIBLE
             }
         })
+        correct_iv.setOnClickListener { correctInCorrectButtonsLogic(true) }
+        incorrect_iv.setOnClickListener { correctInCorrectButtonsLogic(false) }
+    }
 
-        correct_iv.setOnClickListener {
-            isAttempted = true
-            index++
-            if (index == wordItemList.size) {
-                objectAnimator.end()
-                displayPlayAgainDialog()
+    private fun correctInCorrectButtonsLogic(isCorrect: Boolean) {
+        isAttempted = true
+        if (index == wordItemList.size - 1) {
+            showPlayAgainDialog()
+            objectAnimator.end()
+        } else {
+            if (tempWordItem.text_spa == wordItemList[index].text_spa) {
+                if (isCorrect) baseResponse.correct++ else baseResponse.incorrect++
             } else {
-                baseResponse.correct++
-                mBinding.wordItem = wordItemList[index]
-                mBinding.baseResponse = baseResponse
-                objectAnimator.start()
-                isAttempted = false
-                initializeHeadingTxt(wordItemList.size - 1, index)
+                if (isCorrect) baseResponse.incorrect++ else baseResponse.correct++
             }
-        }
-
-        incorrect_iv.setOnClickListener {
-            isAttempted = true
+            var randomIndex = Random.nextInt(wordItemList.size - 1)
             index++
-            if (index == wordItemList.size) {
-                objectAnimator.end()
-                displayPlayAgainDialog()
-            } else {
-                baseResponse.incorrect++
-                mBinding.wordItem = wordItemList[index]
-                mBinding.baseResponse = baseResponse
-                objectAnimator.start()
-                isAttempted = false
-                initializeHeadingTxt(wordItemList.size - 1, index)
-            }
+            tempWordItem =
+                WordItems(wordItemList[index].text_eng, wordItemList[randomIndex].text_spa)
+            mBinding.wordItem = tempWordItem
+            mBinding.baseResponse = baseResponse
+            objectAnimator.start()
+            isAttempted = false
+            initializeHeadingTxt(wordItemList.size, index)
         }
     }
 
-    private fun displayPlayAgainDialog() {
+    private fun showPlayAgainDialog() {
         MaterialAlertDialogBuilder(this).setTitle(resources.getString(R.string.endTitle))
             .setMessage(resources.getString(R.string.endDesc))
             .setPositiveButton(resources.getString(R.string.playAgainTxt)) { _, _ ->
@@ -142,7 +136,7 @@ class FallingWordsActivity : BaseActivity() {
     }
 
     private fun initializeHeadingTxt(size: Int, index: Int) {
-        headingTxt.text = String.format(resources.getString(R.string.totalTxt), index, size)
+        headingTxt.text = String.format(resources.getString(R.string.totalTxt), index, size - 1)
     }
 
     override fun onDestroy() {
