@@ -2,10 +2,8 @@ package com.game.fallingwords.di.modules
 
 import androidx.annotation.NonNull
 import com.game.fallingwords.network.APIinterface
-import com.game.fallingwords.utils.Constants
 import com.game.fallingwords.utils.Constants.Companion.BASEURL
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import com.readystatesoftware.chuck.ChuckInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

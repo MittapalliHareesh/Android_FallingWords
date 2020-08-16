@@ -10,5 +10,8 @@
     <string name="exit">Exit</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="notAttempted">Not Attempted</string>
+    <string name="correct">Correct</string>
+    <string name="inCorrect">Incorrect</string>
     <string name="babel_desc">Everyone. Learning. Languages.</string>
 </resources>

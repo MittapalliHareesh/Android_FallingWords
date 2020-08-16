@@ -53,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:text="Not Attempted"
+                android:text="@string/notAttempted"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/_15ssp"
                 android:textStyle="bold"
@@ -79,7 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:text="Correct"
+                android:text="@string/correct"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/_15ssp"
                 android:textStyle="bold"
@@ -106,7 +106,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:text="Incorrect"
+                android:text="@string/inCorrect"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/_15ssp"
                 android:textStyle="bold"
@@ -167,7 +167,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/_20sdp"
-                android:src="@drawable/ic_correct"
+                app:srcCompat="@drawable/ic_correct"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -178,7 +178,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_12sdp"
                 android:layout_marginBottom="@dimen/_20sdp"
-                android:src="@drawable/ic_incorrect"
+                app:srcCompat="@drawable/ic_incorrect"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
