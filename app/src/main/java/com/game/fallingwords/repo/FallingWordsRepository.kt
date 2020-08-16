@@ -20,6 +20,9 @@ class FallingWordsRepository @Inject constructor(val apiInterface: APIinterface)
 
         apiInterface.getWordsList(wordsListApiURL).subscribeOn(Schedulers.newThread())
             ?.observeOn(AndroidSchedulers.mainThread())
+            ?.onExceptionResumeNext {
+                Log.d("onExceptionResumeNext","1")
+            }
             ?.subscribe(object : Observer<List<WordItems>> {
                 override fun onComplete() {
 
