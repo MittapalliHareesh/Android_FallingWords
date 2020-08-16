@@ -39,4 +39,25 @@
         android:padding="@dimen/_10sdp"
         android:textAllCaps="false"/>
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/aboutBabelTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_15sdp"
+        android:text="@string/babel_desc"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/_15ssp"
+        android:textStyle="italic|bold"
+        app:layout_constraintBottom_toTopOf="@id/babel_logo"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/babel_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_babbel_logo" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
