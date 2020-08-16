@@ -4,4 +4,10 @@
     <string name="game_description"> Hey, As a player you have to decide if the falling word is the correct spanish translation or not.</string>
     <string name="start">Let\'s Start A Game</string>
     <string name="totalTxt">Total Number of Words : %1$d / %2$d</string>
+    <string name="endTitle">Kudos!! Thanks for playing.</string>
+    <string name="endDesc">Do you want to play again?\nWhy to wait let\'s play it.</string>
+    <string name="playAgainTxt">Play Again</string>
+    <string name="exit">Exit</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

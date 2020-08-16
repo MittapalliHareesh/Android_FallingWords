@@ -2,6 +2,7 @@ package com.game.fallingwords
 
 import android.animation.Animator
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
@@ -51,7 +52,7 @@ class FallingWordsActivity : BaseActivity() {
             objectAnimator.start()
             wordItemList = response
             mBinding.wordItem = wordItemList.first()
-            initializeHeadingTxt(wordItemList.size,index)
+            initializeHeadingTxt(wordItemList.size - 1, index)
         }
 
         objectAnimator.addListener(object : Animator.AnimatorListener {
@@ -63,10 +64,15 @@ class FallingWordsActivity : BaseActivity() {
                     isAttempted = false
                     baseResponse.notAttempt++
                     index++
-                    mBinding.baseResponse = baseResponse
-                    mBinding.wordItem = wordItemList[index]
-                    initializeHeadingTxt(wordItemList.size,index)
-                    objectAnimator.start()
+                    if (index == wordItemList.size) {
+                        displayPlayAgainDialog()
+                    } else {
+                        mBinding.baseResponse = baseResponse
+                        mBinding.wordItem = wordItemList[index]
+                        initializeHeadingTxt(wordItemList.size - 1, index)
+                        objectAnimator.start()
+                    }
+
                 }
             }
 
@@ -82,31 +88,52 @@ class FallingWordsActivity : BaseActivity() {
         correct_iv.setOnClickListener {
             isAttempted = true
             index++
-            baseResponse.correct++
-            mBinding.wordItem = wordItemList[index]
-            mBinding.baseResponse = baseResponse
-            objectAnimator.start()
-            isAttempted = false
-            initializeHeadingTxt(wordItemList.size,index)
+            if (index == wordItemList.size) {
+                objectAnimator.end()
+                displayPlayAgainDialog()
+            } else {
+                baseResponse.correct++
+                mBinding.wordItem = wordItemList[index]
+                mBinding.baseResponse = baseResponse
+                objectAnimator.start()
+                isAttempted = false
+                initializeHeadingTxt(wordItemList.size - 1, index)
+            }
         }
 
         incorrect_iv.setOnClickListener {
             isAttempted = true
             index++
-            baseResponse.incorrect++
-            mBinding.wordItem = wordItemList[index]
-            mBinding.baseResponse = baseResponse
-            objectAnimator.start()
-            isAttempted = false
-            initializeHeadingTxt(wordItemList.size,index)
+            if (index == wordItemList.size) {
+                objectAnimator.end()
+                displayPlayAgainDialog()
+            } else {
+                baseResponse.incorrect++
+                mBinding.wordItem = wordItemList[index]
+                mBinding.baseResponse = baseResponse
+                objectAnimator.start()
+                isAttempted = false
+                initializeHeadingTxt(wordItemList.size - 1, index)
+            }
         }
+    }
+
+    private fun displayPlayAgainDialog() {
+        MaterialAlertDialogBuilder(this).setTitle(resources.getString(R.string.endTitle))
+            .setMessage(resources.getString(R.string.endDesc))
+            .setPositiveButton(resources.getString(R.string.playAgainTxt)) { _, _ ->
+                startActivity(Intent(applicationContext, FallingWordsActivity::class.java))
+            }
+            .setNegativeButton(resources.getString(R.string.exit)) { _, _ -> finishAffinity() }
+            .setCancelable(false)
+            .show()
     }
 
     override fun onBackPressed() {
         objectAnimator.pause()
         MaterialAlertDialogBuilder(this).setTitle(resources.getString(R.string.dialog_message))
-            .setPositiveButton("Yes") { _, _ -> finish() }
-            .setNegativeButton("No") { dialog, _ ->
+            .setPositiveButton(resources.getString(R.string.yes)) { _, _ -> finishAffinity() }
+            .setNegativeButton(resources.getString(R.string.no)) { dialog, _ ->
                 objectAnimator.resume()
                 dialog.dismiss()
             }
