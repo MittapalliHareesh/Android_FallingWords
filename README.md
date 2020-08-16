@@ -4,7 +4,7 @@ Idea Of this Project :-
 
 The task is to write a small language game. The player will see a word in language „one“ on the screen. While this word is displayed, a word in language „two“ will fall down on the screen. The player will have to choose if the falling word is the correct translation or a wrong translation. The player needs to answer, before the word reaches the bottom of the screen. Include a counter that gives the player feedback.
 
-Design :- Implemented by following MMVM archtecture with RXJava and DI.  
+Design:- Implemented by following MVVM architecture with RXJava and DI.
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/16395251/90339007-75923680-e00b-11ea-83be-76790ff5a780.png" width="500" height="1000">
@@ -40,13 +40,12 @@ The Data Binding Library is a support library that allows you to bind UI compone
 
 6) Used Retrofit to make API calls.
   
+
 <h3>Explanation:-</h3>
 
-Falling word game case study  
+Falling word game case study was implemented in such a way that, words will fall down randomly and the user has option to select either Correct / Wrong button or user can ignore the question. Depending on the user response, the score will be displayed top of the UI.
 
-<h3> Assumptions:- </h3>
+Technically, MVVM architecture was used and separated View, Bussiness logic, and API/Database operations. To keep observe data, I have used the LiveData object with RXJava. To inject components I have used Dependency Injection Library.
 
-By using MVVM architecture sepearted View, Bussiness logic and API/Database operations. To keep observe data i have used LiveData object with RXJava. And to inject components i have used Dependency Injection Library. 
-
-For Time Constarints could not able to write test cases and app restricted to only portrait mode.
+As of now, this app supports portrait mode only. Due to time constraints, I could not able to handle landscape mode & could not able to write test cases.
 
