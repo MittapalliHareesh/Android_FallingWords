@@ -18,7 +18,7 @@ Design :- Implemented by following MMVM archtecture with RXJava and DI.
 <img src="https://user-images.githubusercontent.com/16395251/90339121-695aa900-e00c-11ea-8543-95b4e818cabb.png" width="500" height="1000">
 </p>
 
-<h3>Third party libraries Which used in this Project:- </h3>
+<h3>Third party libraries which are used in this Project:- </h3>
 
 1) Used " implementation 'com.intuit.ssp:ssp-android:1.0.6' "
 
