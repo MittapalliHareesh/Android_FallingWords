@@ -46,7 +46,7 @@ Falling word game case study
 
 <h3> Assumptions:- </h3>
 
-Major focus to keep UI simple things. By using MVVM architecture sepearted View, Bussiness logic and API/Database operations. To keep observe data used LiveData object with RXJava. For Injecting components used Dependency Injection Library. 
+By using MVVM architecture sepearted View, Bussiness logic and API/Database operations. To keep observe data i have used LiveData object with RXJava. And to inject components i have used Dependency Injection Library. 
 
-For Time Constarints could not able to write test cases and supported only portrait mode.
+For Time Constarints could not able to write test cases and app restricted to only portrait mode.
 
